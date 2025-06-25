@@ -1,0 +1,160 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { getCollection } from "astro:content";
+
+// Get both collections
+const codeProjects = await getCollection("codeProjects");
+const designProjects = await getCollection("designProjects");
+const extraProjects = await getCollection("extraProjects");
+
+// Combine and sort by pubDate (descending)
+const allProjects = [...codeProjects, ...designProjects, ...extraProjects].sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-..."
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://use.typekit.net/swa0lbf.css" />
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <div class="row flex-column flex-md-row">
+        <div class="col-md-6 mb-4 mb-md-0"><img src="/self.gif" /></div>
+        <div class="col-md-6 mb-4 mb-md-0">
+          <h1>
+            <div>Hello!</div><div>
+              I'm Joanne Lee, <span id="blink">|</span>
+            </div>
+          </h1>
+          <p>
+            a rising junior pursuing a B.S. in Computer Science and Immersive
+            Media Design at the University of Maryland, College Park.
+            <a href="/about"><button>▸ want to know more?</button></a>
+          </p>
+          <hr />
+        </div>
+      </div>
+
+      <div class="row flex-column flex-md-row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h1>Projects</h1>
+          <p>See what I've been up to ➜</p>
+          <hr />
+        </div>
+        <div class="col-md-8 mb-4 mb-md-0">
+          <div id="projects">
+            {
+              allProjects.slice(0, 4).map((post) => (
+                <a href={`/${post.collection}/${post.id}/`}>
+                  <div class="img-wrapper">
+                    <img
+                      src={post.data.heroImage}
+                      alt={post.data.title}
+                      width="100%"
+                      style="margin-bottom: 1rem;"
+                    />
+                    <div class="title">
+                      <h5>{post.data.title}</h5>
+                    </div>
+                  </div>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </main>
+  </body><Footer />
+</html>
+
+<script>
+  window.addEventListener("scroll", () => {
+    const body = document.querySelector("body");
+    if (!body) return;
+    if (window.scrollY > 100) {
+      body.classList.add("scrolled");
+    } else {
+      body.classList.remove("scrolled");
+    }
+  });
+</script>
+
+<style>
+  h5 {
+    font-family: "Overpass Mono", monospace;
+  }
+  .img-wrapper {
+    width: 100%;
+    aspect-ratio: 1.5 / 1; /* Maintains consistent shape */
+    position: relative;
+    overflow: hidden;
+    display: flex; /* Enables centering if needed */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img-wrapper img {
+    width: 100%;
+    height: 100%; /* Ensures full fill */
+    object-fit: cover; /* Crops excess while preserving aspect ratio */
+    display: block;
+    transition:
+      filter 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .img-wrapper:hover img {
+    filter: blur(3px);
+    opacity: 0.2;
+  }
+
+  .title {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0%;
+    transition: opacity 0.6s;
+  }
+
+  .img-wrapper:hover .title {
+    opacity: 100%;
+  }
+
+  .title > * {
+    transform: translateY(25px);
+    transition: transform 0.6s ease;
+  }
+
+  .img-wrapper:hover .title > * {
+    transform: translateY(0px);
+  }
+
+  p {
+    margin: 1.5em 0;
+  }
+  button {
+    display: flex;
+    margin: 1.5rem 0 1.5rem auto;
+  }
+  a {
+    text-decoration: none;
+  }
+</style>

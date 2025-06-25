@@ -1,0 +1,102 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../consts";
+import "../styles/global.css"; // path to your CSS file
+---
+
+<header>
+  <nav>
+    <div class="internal-links">
+      <HeaderLink href="/"><img src="/nav/house.svg" title="Home" /></HeaderLink
+      >
+      <HeaderLink href="/codeProjects"
+        ><img src="/nav/coding.svg" title="Code" /></HeaderLink
+      >
+      <HeaderLink href="/designProjects"
+        ><img src="/nav/brush.svg" title="Design" /></HeaderLink
+      >
+      <HeaderLink href="/extraProjects"
+        ><img src="/nav/extras.svg" title="Extra" /></HeaderLink
+      >
+      <HeaderLink href="/about"
+        ><img src="/nav/about.svg" title="About" /></HeaderLink
+      >
+    </div>
+  </nav>
+</header>
+
+<script>
+  window.addEventListener("scroll", () => {
+    const header = document.querySelector("header");
+    if (!header) return;
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
+</script>
+
+<style>
+  header {
+    position: fixed;
+    top: 2%;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* ensures it's on top of other content */
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0.5em;
+  }
+
+  header.scrolled {
+    .internal-links {
+      background-color: var(--black);
+      border: solid 2px var(--white);
+    }
+    img {
+      filter: invert(1);
+    }
+  }
+
+  p {
+    font-family: "Overpass Mono", monospace;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav a {
+    text-decoration: none;
+    padding: 1em 1em;
+  }
+
+  img {
+    width: 2em;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .internal-links img:hover {
+    transform: scale(1.25);
+  }
+
+  .internal-links {
+    font-size: 0.8em;
+    border: solid 2px var(--black);
+    border-radius: 10px;
+    background-color: var(--white);
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+
+  img {
+    width: 2em;
+    height: auto;
+    transition: color 0.3s ease;
+  }
+</style>
