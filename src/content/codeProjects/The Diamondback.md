@@ -1,6 +1,6 @@
 ---
 title: "The Diamondback"
-description: "Lorem ipsum dolor sit amet"
+description: "Built a responsive student news web app using React, Astro, and Tailwind, improving accessibility across devices through collaborative UI development and agile coordination."
 pubDate: "Dec 2024"
 heroImage: "/code/DBK.png"
 ---
