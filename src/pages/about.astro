@@ -25,6 +25,12 @@ import Tag from "../components/Tag.astro";
           <img src="/self.png" />
           <div class="description">
             <h3>Joanne Lee</h3>
+            <p>
+              is a software engineer who cares about crafting impactful digital
+              experiences at the intersection of technology and design.
+              Currently seeking new opportunities to learn and grow, so feel
+              free to reach out if you'd like to connect!
+            </p>
             <a
               href="https://www.linkedin.com/in/joanneynlee/"
               target="_blank"
@@ -37,56 +43,102 @@ import Tag from "../components/Tag.astro";
                     width="25"
                     height="25"
                   />
-                  joanneynlee
+                  LinkedIn: Joanne Lee
                 </p>
               </button></a
             >
             <a href="https://github.com/Joanne-Lee20" target="_blank">
               <button>
                 <p>
-                  <img
-                    src="/nav/github.svg"
-                    width="25"
-                    height="25"
-                  />Joanne-Lee20
+                  <img src="/nav/github.svg" width="25" height="25" />GitHub:
+                  Joanne-Lee20
                 </p>
               </button></a
             >
-            <button><p>joanneynlee@gmail.com</p></button>
+            <button
+              ><p>
+                <img
+                  src="/nav/mail.svg"
+                  width="25"
+                  height="25"
+                />joanneynlee@gmail.com
+              </p></button
+            >
           </div>
         </div>
         <div class="col-md-8">
-          <h3>Education</h3>
+          <h4>Education</h4>
           <hr />
           <p>
             <ul>
-              <li>University of Maryland, College Park (UMD)</li>
-              <li>Computer Science & Immersive Media Design (dual degree)</li>
-              <li>Incoming 3rd-year student</li>
+              <li>Undergrad. at the University of Maryland, College Park</li>
+              <li>
+                <b>Majors:</b> Computer Science & Immersive Media Design
+              </li>
+              <li><b>Expected Graduation:</b> May 2027</li>
               <li>
                 <b>Programs:</b> UMD Honors College (Design Cultures and Creativity
                 Living Learning Program), QUEST Honors Program
               </li>
               <li>
-                <b>Academic Awards:</b> National Merit Scholarship Finalist, UMD
-                Dean's Scholarship recipient, Dean's List (3 semesters), AP Scholar
-                with Distinction
+                <b>Awards:</b> National Merit Scholarship Finalist, UMD Dean's Scholarship
+                recipient, Dean's List
               </li>
             </ul>
           </p>
-          <h3>Interests</h3>
+          <h4>Stats</h4>
           <hr />
-          <p>
+          <div class="stats">
+            <div>
+              <p>
+                <b>Frontend Development</b> (React, Astro, Tailwind)
+              </p><progress value="95" max="100">95%</progress>
+            </div>
+
+            <div>
+              <p><b>Web Languages</b> (HTML, CSS, JavaScript)</p><progress
+                value="95"
+                max="100">95%</progress
+              >
+            </div>
+
+            <div>
+              <p>
+                <b>Backend & APIs</b> (Node.js, Express, .NET)
+              </p><progress value="60" max="100">60%</progress>
+            </div>
+
+            <div>
+              <p>
+                <b>Data & Analysis</b> (Python, Pandas, scikit-learn)
+              </p><progress value="70" max="100">70%</progress>
+            </div>
+          </div>
+          <h4>Inventory</h4>
+          <hr />
+          <div class="inventory">
             <ul>
-              <li>Creating digital art and animations</li>
-              <li>Learning new songs on the piano</li>
               <li>
-                Listening to video essays (usually on books, movies, and video
-                games)
+                <img src="/inventory/book.svg" />
+                <div class="item-desc"><b>Sci-fi Books</b></div>
               </li>
-              <li>Playing badminton</li>
+              <li>
+                <img src="/inventory/tools.svg" /><div class="item-desc">
+                  <b>Art Supplies</b>
+                </div>
+              </li>
+              <li>
+                <img src="/inventory/game.svg" /><div class="item-desc">
+                  <b>Retro Games</b>
+                </div>
+              </li>
+              <li>
+                <img src="/inventory/sushi.svg" /><div class="item-desc">
+                  <b>Asian Food</b>
+                </div>
+              </li>
             </ul>
-          </p>
+          </div>
         </div>
       </div>
       <Footer />
@@ -107,6 +159,35 @@ import Tag from "../components/Tag.astro";
 </script>
 
 <style>
+  .stats {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .stats div {
+    display: flex;
+    flex-direction: column;
+    gap: 0rem; /* tighter spacing between p and progress */
+    margin-bottom: 0.5rem; /* space between stat blocks */
+  }
+  .stats p {
+    margin: 0;
+  }
+  progress {
+    border: 2px solid var(--black);
+    height: 1rem;
+    width: 100%;
+    border-radius: 5px;
+  }
+  progress::-webkit-progress-bar {
+    background-color: var(--white);
+  }
+  progress::-webkit-progress-value {
+    background-color: var(--black);
+  }
+
+  hr {
+    margin-top: 0.25rem;
+  }
   button {
     width: 100%;
     padding: 0.5rem;
@@ -119,20 +200,52 @@ import Tag from "../components/Tag.astro";
     transition: filter 0.3s ease;
   }
   button p {
-    margin: 0;
-    font-size: 13px;
+    margin: auto;
+    font-size: 12px;
   }
   button:hover img {
     filter: invert(0);
   }
   .description {
     margin: 0.5rem 0;
+    text-align: left;
+  }
+
+  .inventory {
+    font-size: 0.8em;
+    background-color: var(--white);
+  }
+  .inventory ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+  }
+  .inventory li {
+    display: inline-block;
+    margin: 1rem;
+    align-items: center;
     text-align: center;
+  }
+  .inventory img {
+    width: 3em;
+    transition: transform 0.3s ease-in-out;
+  }
+  .item-desc {
+    margin-top: 1rem;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .inventory li:hover img {
+    transform: scale(1.25);
+    cursor: pointer;
   }
   #card {
     padding: 2rem;
     border: 2px solid var(--black);
-    border-radius: 0.5rem;
+    border-radius: 10px;
     box-shadow: 5px 5px 0px var(--black);
   }
   h1 {
@@ -163,26 +276,8 @@ import Tag from "../components/Tag.astro";
     opacity: 0.2;
   }
 
-  .title {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    opacity: 0%;
-    transition: opacity 0.6s;
-  }
-
   .img-wrapper:hover .title {
     opacity: 100%;
-  }
-
-  .title > * {
-    transform: translateY(25px);
-    transition: transform 0.6s ease;
   }
 
   .img-wrapper:hover .title > * {
@@ -196,7 +291,7 @@ import Tag from "../components/Tag.astro";
   ul {
     font-family: "Overpass";
     font-size: 15px;
-    list-style-type: disc;
+    list-style-type: square;
   }
   a {
     text-decoration: none;

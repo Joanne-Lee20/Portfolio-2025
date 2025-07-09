@@ -49,16 +49,6 @@ import "../styles/global.css"; // path to your CSS file
     padding: 0.5em;
   }
 
-  header.scrolled {
-    .internal-links {
-      background-color: var(--black);
-      border: solid 2px var(--white);
-    }
-    img {
-      filter: invert(1);
-    }
-  }
-
   p {
     font-family: "Overpass Mono", monospace;
   }
@@ -78,11 +68,23 @@ import "../styles/global.css"; // path to your CSS file
 
   img {
     width: 2em;
-    transition: transform 0.3s ease-in-out;
+    height: auto;
+    transition:
+      filter 0.3s ease,
+      transform 0.3s ease-in-out;
   }
 
-  .internal-links img:hover {
+  img:hover {
     transform: scale(1.25);
+  }
+
+  header.scrolled .internal-links {
+    background-color: var(--black);
+    border: solid 2px var(--white);
+  }
+
+  header.scrolled img {
+    filter: invert(1);
   }
 
   .internal-links {
