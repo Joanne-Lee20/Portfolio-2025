@@ -231,6 +231,8 @@ hr {
 button {
 	font-family: "Overpass Mono", monospace;
 	font-size: 0.9em;
+	font-weight: bold;
+	cursor: pointer;
 	border: none;
     padding: 0.25em 1em;
 	background-color: var(--black);
@@ -280,7 +282,7 @@ button:hover {
 
 .fade-in {
         opacity: 0;
-        transform: translateY(15px);
+        transform: translateY(20px);
         animation: fadeIn 0.7s forwards;
       }
 
