@@ -12,7 +12,7 @@ const extraProjects = await getCollection("extraProjects");
 
 // Combine and sort by pubDate (descending)
 const allProjects = [...codeProjects, ...designProjects, ...extraProjects].sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
@@ -32,7 +32,9 @@ const allProjects = [...codeProjects, ...designProjects, ...extraProjects].sort(
 
     <main class="fade-in">
       <div class="row flex-column flex-md-row">
-        <div class="col-md-6 mb-4 mb-md-0"><img src="/self.gif" /></div>
+        <div class="col-md-6 mb-4 mb-md-0">
+          <img class="self-photo" src="/self.png" alt="Joanne Lee" />
+        </div>
         <div class="col-md-6 mb-4 mb-md-0">
           <h2><div>Hello!</div></h2>
           <h1>
@@ -41,7 +43,8 @@ const allProjects = [...codeProjects, ...designProjects, ...extraProjects].sort(
             </div>
           </h1>
           <p>
-            a rising senior pursuing a B.S. in Computer Science at the University of Maryland, College Park.
+            a rising senior pursuing a B.S. in Computer Science at the
+            University of Maryland, College Park.
             <a href="/about"><button>▸ want to know more?</button></a>
           </p>
           <hr />
@@ -96,6 +99,14 @@ const allProjects = [...codeProjects, ...designProjects, ...extraProjects].sort(
   h5 {
     font-family: "Overpass Mono", monospace;
   }
+
+  .self-photo {
+    display: block;
+    width: min(80%, 320px);
+    height: auto;
+    margin: 0 auto;
+  }
+
   .img-wrapper {
     width: 100%;
     aspect-ratio: 1.5 / 1; /* Maintains consistent shape */
